@@ -1,5 +1,3 @@
-version: "3.3"
-
 services:
   #Contenedor Postgres
   postgres:
@@ -18,7 +16,7 @@ services:
     networks:
       - sistemas
 
-  # Servicio de Apache2 y php7.4-apache
+  # Servicio de Apache2 y PHP
   sistema:
     container_name: "${PROYECTO_NOMBRE}-sistema"
     build:
@@ -47,7 +45,7 @@ services:
       - ./config:/data/local/config
       - ./toba:${WORKDIR}
       - ./config/.zsh_history:/root/.zsh_history
-    links:
+    depends_on:
       - postgres
     restart: always
     networks:
