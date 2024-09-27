@@ -20,7 +20,7 @@ A tener en cuenta en el archivo **.env**:
 
 **TOBA_NOMBRE_INSTALACION=toba3** Es el nombre de la instalación que solicita SIU Toba
 
-**TOBA_BASE_NOMBRE=toba_3_3** Es el nombre de la base de datos que se creará en el momento de la instalación
+**TOBA_BASE_NOMBRE=toba_3_5** Es el nombre de la base de datos que se creará en el momento de la instalación
 
 **TOBA_BASE_HOST=postgres** Es el host de PostgreSQL linkeado al contenedor de PHP
 
@@ -28,7 +28,7 @@ A tener en cuenta en el archivo **.env**:
 
 **TOBA_ID_DESARROLLADOR=75** Setea el ID de Desarrollador
 
-**TOBA_BRANCH=v3.3.25** Es la versión de Toba a descargar del repositorio del [SIU](https://github.com/SIU-Toba/framework) (ver branch)
+**TOBA_BRANCH=v3.4.6** Es la versión de Toba a descargar del repositorio del [SIU](https://github.com/SIU-Toba/framework) (ver branch)
 
 **AGREGAR_BOOTSTRAP=true** Agregar Bootstrap a la instalación de Toba
 
