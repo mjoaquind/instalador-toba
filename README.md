@@ -1,6 +1,6 @@
 # docker compose para instalación de SIU Toba
 
-Genera un contenedor de PostgreSQL y PHP 7.4 con una [instalación de SIU Toba](https://github.com/SIU-Toba/framework)
+Genera un contenedor de PostgreSQL y PHP 8.1 con una [instalación de SIU Toba](https://github.com/SIU-Toba/framework)
 
 # Uso
 
