@@ -1,4 +1,19 @@
 services:
+  # Contenedor NGINX
+  #  nginxproxy:
+  #    image: jwilder/nginx-proxy
+  #    container_name: nginxproxy
+  #    restart: always
+  #    ports:
+  #      - "80:80"
+  #      - "443:443"
+  #    volumes:
+  #      - /data/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
+  #      - /root/certificados:/etc/nginx/certs
+  #      - /var/run/docker.sock:/tmp/docker.sock:ro
+  #    networks:
+  #      - sistemas
+
   #Contenedor Postgres
   postgres:
     image: "postgres:${POSTGRES_VERSION}"
@@ -25,6 +40,7 @@ services:
     ports:
       - "${APACHE_IP}:${APACHE_PORT}:80"
     environment:
+      #      VIRTUAL_HOST: ${VIRTUAL_HOST}
       TZ: ${TZ}
       WORKDIR: ${WORKDIR}
       TOBA_USUARIO_ADMIN: ${TOBA_USUARIO_ADMIN}
