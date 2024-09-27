@@ -1,0 +1,58 @@
+version: "3.3"
+
+services:
+  #Contenedor Postgres
+  postgres:
+    image: "postgres:${POSTGRES_VERSION}"
+    container_name: "${PROYECTO_NOMBRE}-postgres"
+    ports:
+      - "${TOBA_BASE_PORT}:5432"
+    environment:
+      TZ: ${TZ}
+      PGTZ: ${TZ}
+      POSTGRES_USER: ${TOBA_BASE_USER}
+      POSTGRES_PASSWORD: ${TOBA_BASE_PASS}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - sistemas
+
+  # Servicio de Apache2 y php7.4-apache
+  sistema:
+    container_name: "${PROYECTO_NOMBRE}-sistema"
+    build:
+      context: .
+      dockerfile: docker/sistema/Dockerfile
+    ports:
+      - "${APACHE_IP}:${APACHE_PORT}:80"
+    environment:
+      TZ: ${TZ}
+      WORKDIR: ${WORKDIR}
+      TOBA_USUARIO_ADMIN: ${TOBA_USUARIO_ADMIN}
+      TOBA_BASE_PASS: ${TOBA_BASE_PASS}
+      TOBA_PASS: ${TOBA_PASS}
+      TOBA_BASE_HOST: ${TOBA_BASE_HOST}
+      TOBA_BASE_PORT: ${TOBA_BASE_PORT}
+      TOBA_BASE_USER: ${TOBA_BASE_USER}
+      TOBA_BASE_NOMBRE: ${TOBA_BASE_NOMBRE}
+      TOBA_NOMBRE_INSTALACION: ${TOBA_NOMBRE_INSTALACION}
+      TOBA_ID_DESARROLLADOR: ${TOBA_ID_DESARROLLADOR}
+      TOBA_ES_PRODUCCION: ${TOBA_ES_PRODUCCION}
+      TOBA_BRANCH: ${TOBA_BRANCH}
+      AGREGAR_BOOTSTRAP: ${AGREGAR_BOOTSTRAP}
+      ZSH_SYNTAX_HIGHLIGHTING: ${ZSH_SYNTAX_HIGHLIGHTING}
+      ZSH_AUTOSUGGESTIONS: ${ZSH_AUTOSUGGESTIONS}
+    volumes:
+      - ./config:/data/local/config
+      - ./toba:${WORKDIR}
+      - ./config/.zsh_history:/root/.zsh_history
+    links:
+      - postgres
+    restart: always
+    networks:
+      - sistemas
+#Configuracion de Red para contenedores
+networks:
+  sistemas:
+    driver: bridge
