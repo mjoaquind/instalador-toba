@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.1-apache
 RUN a2enmod rewrite
 
 # Install Postgre PDO
@@ -36,5 +36,7 @@ EXPOSE 80
 WORKDIR /data/local/sistema
 
 COPY docker/sistema/start.sh /entrypoint-dir/start.sh
+
+RUN chmod +x /entrypoint-dir/start.sh
 
 ENTRYPOINT ["/entrypoint-dir/start.sh"]
